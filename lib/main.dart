@@ -7,7 +7,12 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,10 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedItemIndex =0;
   Future<List<User>> _getUser()async{
     var data = await http.get("https://jsonplaceholder.typicode.com/users");
-    var jesonData = json.decode(data.body);
+    var jsonData = json.decode(data.body);
 
     List<User> users = [];
-    for(var u in jesonData){
+    for(var u in jsonData){
       User user = User(u["id"],u["name"],u["username"],u["email"]);
       users.add(user);
     }
